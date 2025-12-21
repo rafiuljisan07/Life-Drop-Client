@@ -20,13 +20,13 @@ const Banner = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to={'/register'}
-                            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition transform hover:scale-105 duration-200"
+                            className="max-w-md mx-auto sm:mx-0 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition transform hover:scale-105 duration-200"
                         >
                             Join as a Donor
                         </Link>
                         <Link
                             to={"/search"}
-                            className="bg-white text-red-600 hover:bg-red-50 font-semibold py-3 px-8 rounded-lg transition transform hover:scale-105 duration-200"
+                            className="max-w-md mx-auto sm:mx-0 bg-white text-red-600 hover:bg-red-50 font-semibold py-3 px-8 rounded-lg transition transform hover:scale-105 duration-200"
                         >
                             Search Donors
                         </Link>
