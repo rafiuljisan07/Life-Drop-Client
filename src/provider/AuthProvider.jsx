@@ -48,23 +48,11 @@ const AuthProvider = ({ children }) => {
         return () =>
             unsubscribe()
     }, []);
-
-    useEffect(() => {
-        if (!user) return;
-        axios.get(`http://localhost:3000/users/${user.email}`)
-            .then((res) => {
-                setRole(res.data.role)
-            })
-
-    }, [user])
-
-    console.log(role);
     
 
     const AuthData = {
         user,
         loading,
-        role,
         createUser,
         signInUser,
         signInWithGoogle,

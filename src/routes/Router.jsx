@@ -10,6 +10,7 @@ import Profile from "../dashboard/Profile";
 import AllBloodDonationRequest from "../dashboard/AllBloodDonationRequest";
 import AllUsers from "../dashboard/AllUsers";
 import Search from "../components/Search";
+import CreateRequest from "../dashboard/CreateRequest";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <Profile />
+            },
+            {
+                path: '/dashboard/create-donation-request',
+                element: <CreateRequest />
             },
             {
                 path: '/dashboard/all-users',

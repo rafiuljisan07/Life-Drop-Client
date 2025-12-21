@@ -4,9 +4,9 @@ import Aside from '../components/Aside';
 
 const DashboardLayout = () => {
     return (
-        <div className='flex space-x-2'>
+        <div>
             <Aside />
-            <div className='flex-1 ml-10 md:ml-4'>
+            <div className='mt-10 sm:ml-0 md:ml-72 xl:ml-0'>
                 <Outlet />
             </div>
         </div>
