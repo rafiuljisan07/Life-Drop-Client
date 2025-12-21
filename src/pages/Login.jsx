@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Login = () => {
     return (
         <div>
-            <div className="min-h-screen bg-linear-to-br from-red-100 to-red-300 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-linear-to-br from-red-100 to-red-400 flex items-center justify-center p-4">
                 <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-red-600 mb-2">Life Drop</h1>

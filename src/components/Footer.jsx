@@ -15,7 +15,7 @@ const Footer = () => {
                     <div>
                         <Link to="/" className="flex items-center space-x-2 mb-4">
                             <img className='h-10' src={logo} alt="Life Drop Logo" />
-                            <span className="text-2xl font-bold text-red-500">Life<span className='text-white'> Drop</span> </span>
+                            <span className="text-2xl font-bold">Life<span className='text-red-500'> Drop</span> </span>
                         </Link>
                         <p className="text-gray-400 mb-6">
                             Connecting blood donors with recipients in need. Join our community to save lives and make a difference.
