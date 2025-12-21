@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import Profile from "../dashboard/Profile";
 import AllBloodDonationRequest from "../dashboard/AllBloodDonationRequest";
 import AllUsers from "../dashboard/AllUsers";
+import Search from "../components/Search";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/search',
+                element: <Search />
             }
         ]
     },

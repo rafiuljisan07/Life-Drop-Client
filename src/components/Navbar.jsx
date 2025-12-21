@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo.png'
 import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
+import { FaSearch } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const Navbar = () => {
     const navLinks = [
         { path: '/', label: 'Home' },
         { path: '/donation-requests', label: 'Donation Requests' },
-        { path: '/search', label: 'Search Donors' },
+        { path: '/search', label: <FaSearch /> },
     ]
 
 
