@@ -6,7 +6,6 @@ import AboutUs from '../components/AboutUs';
 const HomePage = () => {
     return (
         <div>
-            HomePage
             <Banner/>
             <AboutUs/>
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
@@ -11,7 +11,24 @@ const Register = () => {
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const [upazilas, setUpazilas] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [upazila, setUpazila] = useState('');
+    const [district, setDistrict] = useState('');
 
+
+    useEffect(() => {
+        axios.get('./upazilas.json')
+            .then(res => {
+                setUpazilas(res.data)
+            })
+
+        axios.get('./districts.json')
+            .then(res => {
+                setDistricts(res.data)
+
+            })
+    }, [])
 
 
     const handleRegister = async (e) => {
@@ -21,6 +38,7 @@ const Register = () => {
         const name = form.name.value;
         const photo = form.photo.files[0];
         const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
         const bloodGroup = form.bloodGroup.value;
         const district = form.district.value;
         const upazila = form.upazila.value;
@@ -38,11 +56,24 @@ const Register = () => {
             return
         };
 
+        if (password !== confirmPassword) {
+            Swal.fire({
+                icon: "error",
+                title: "Password Not Matched",
+                text: "Please make sure both passwords are the same",
+                confirmButtonColor: "#dc2626"
+            });
+            return
+        }
+
         const formData = {
             email,
             password,
             name,
-            photoURL
+            photoURL,
+            bloodGroup,
+            district,
+            upazila
         }
 
         createUser(email, password)
@@ -115,7 +146,7 @@ const Register = () => {
                         <select
                             name='bloodGroup'
                             required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                            className="select w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                             <option value="">Select Blood Group</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
@@ -129,12 +160,24 @@ const Register = () => {
 
                         <select
                             name='district'
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                            value={district}
+                            onChange={e => setDistrict(e.target.value)}
+                            className="select w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                             <option value="">Select District</option>
+                            {
+                                districts.map(d => <option value={d?.name} key={d.id}>{d?.name}</option>)
+                            }
                         </select>
 
-                        <select name='upazila' className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <select
+                            name='upazila'
+                            value={upazila}
+                            onChange={e => setUpazila(e.target.value)}
+                            className="select w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                             <option value="">Select Upazila</option>
+                            {
+                                upazilas.map(u => <option value={u?.name} key={u.id}>{u?.name}</option>)
+                            }
                         </select>
 
                         <label className='relative block'>
@@ -156,6 +199,7 @@ const Register = () => {
 
                         <input
                             type="password"
+                            name='confirmPassword'
                             required
                             placeholder="Confirm Password"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
