@@ -1,17 +1,43 @@
-import { Menu, X, Droplets } from 'lucide-react'
-import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo.png'
+import { AuthContext } from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+    const { user, signOutUser } = useContext(AuthContext);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const user = false
+    const [open, setOpen] = useState(false);
 
     const navLinks = [
         { path: '/', label: 'Home' },
         { path: '/donation-requests', label: 'Donation Requests' },
         { path: '/search', label: 'Search Donors' },
     ]
+
+
+    const handleLogout = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Logged out successfully!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                });
+                setOpen(false)
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Logout failed!",
+                    text: "Please try again."
+                });
+
+            })
+    }
 
     return (
         <nav className="sticky top-0 z-50 bg-white shadow-sm">
@@ -38,19 +64,23 @@ const Navbar = () => {
                         ))}
 
                         {user ? (
-                            <div className="flex items-center space-x-4">
-                                <Link
-                                    to="/dashboard"
-                                    className="btn-primary"
-                                >
-                                    Dashboard
-                                </Link>
-                                <button
-                                    //   onClick={logout}
-                                    className="text-gray-700 hover:text-red-600 font-medium"
-                                >
-                                    Logout
-                                </button>
+                            <div className="relative flex items-center space-x-4">
+                                <img
+                                    onClick={() => setOpen(!open)}
+                                    src={user?.photoURL}
+                                    alt="profile"
+                                    className="w-10 h-10 rounded-full cursor-pointer border-2 border-red-500 shadow-sm" />
+                                <div className={`absolute right-0 top-10 transition-all origin-top mt-2 transform ${open ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"} bg-white rounded-md shadow-lg py-2 px-3 z-20 space-y-2`}>
+                                    <button
+                                        onClick={handleLogout}
+                                        className='cursor-pointer text-gray-700 hover:text-red-600 font-medium hover:bg-red-100 rounded-lg p-1'
+                                    >
+                                        Logout
+                                    </button>
+                                    <Link
+                                        to={'/dashboard'}
+                                        className='text-gray-700 hover:text-red-600 font-medium hover:bg-red-100 rounded-lg p-1'>Dashboard</Link>
+                                </div>
                             </div>
                         ) : (
                             <div className="flex items-center space-x-4">
@@ -62,7 +92,7 @@ const Navbar = () => {
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="btn-primary"
+                                    className="text-gray-700 hover:text-red-600 font-medium"
                                 >
                                     Register
                                 </Link>
@@ -71,12 +101,35 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="lg:hidden p-2"
-                    >
-                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    <div className='lg:hidden flex space-x-2'>
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="p-2"
+                        >
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                        {user && (
+                            <div className="relative flex items-center space-x-4">
+                                <img
+                                    onClick={() => setOpen(!open)}
+                                    src={user?.photoURL}
+                                    alt="profile"
+                                    className="w-10 h-10 rounded-full cursor-pointer border-2 border-red-500 shadow-sm" />
+                                <div className={`absolute right-0 top-10 transition-all origin-top mt-2 transform ${open ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"} bg-white rounded-md shadow-lg py-2 px-3 z-20 space-y-2`}>
+                                    <button
+                                        onClick={handleLogout}
+                                        className='cursor-pointer text-gray-700 hover:text-red-600 font-medium hover:bg-red-100 rounded-lg p-1'
+                                    >
+                                        Logout
+                                    </button>
+                                    <Link
+                                        to={'/dashboard'}
+                                        className='text-gray-700 hover:text-red-600 font-medium hover:bg-red-100 rounded-lg p-1'>Dashboard</Link>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
                 {mobileMenuOpen && (
@@ -98,21 +151,7 @@ const Navbar = () => {
 
                             {user ? (
                                 <>
-                                    <Link
-                                        to="/dashboard"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="px-4 py-2 btn-primary text-center"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                    <button
-                                        onClick={() => {
-                                            setMobileMenuOpen(false)
-                                        }}
-                                        className="px-4 py-2 text-gray-700 text-left"
-                                    >
-                                        Logout
-                                    </button>
+
                                 </>
                             ) : (
                                 <>

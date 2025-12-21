@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LoadingSpinner = () => {
+const AllUsers = () => {
     return (
         <div>
-            
+            All Users
         </div>
     );
 };
 
-export default LoadingSpinner;
+export default AllUsers;

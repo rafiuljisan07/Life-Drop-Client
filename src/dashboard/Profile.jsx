@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LoadingSpinner = () => {
+const Profile = () => {
     return (
         <div>
-            
+            profile
         </div>
     );
 };
 
-export default LoadingSpinner;
+export default Profile;
