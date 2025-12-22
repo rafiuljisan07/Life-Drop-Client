@@ -12,6 +12,7 @@ import AllUsers from "../dashboard/AllUsers";
 import Search from "../components/Search";
 import CreateRequest from "../dashboard/CreateRequest";
 import MyDonationRequest from "../dashboard/MyDonationRequest";
+import Funding from "../pages/Funding";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/funding',
+                element: <Funding />
             },
             {
                 path: '/search',
