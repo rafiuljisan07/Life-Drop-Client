@@ -32,7 +32,7 @@ const AllUsers = () => {
             <div className="overflow-x-auto p-2">
                 <h2 className="text-2xl font-bold mb-4">All Users</h2>
                 <table className="w-full border border-red-300 rounded-2xl overflow-hidden shadow-lg">
-                    <thead className="bg-red-500">
+                    <thead className="bg-red-500 text-white">
                         <tr>
                             <th className="border border-red-300 p-2 text-left">User Image</th>
                             <th className="border border-red-300 p-2 text-left">Name</th>

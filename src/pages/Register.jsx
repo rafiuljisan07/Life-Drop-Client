@@ -85,7 +85,7 @@ const Register = () => {
                     timer: 1500,
                     timerProgressBar: true
                 });
-                axios.post(`http://localhost:3000/users`, formData)
+                axios.post(`https://life-drop-server-nine.vercel.app/users`, formData)
                     .then(() => {
 
                     })

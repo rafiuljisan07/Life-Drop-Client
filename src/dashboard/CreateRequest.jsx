@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const CreateRequest = () => {
     const { user } = useContext(AuthContext)
@@ -37,6 +38,8 @@ const CreateRequest = () => {
         const recipientUpazila = form.recipientUpazila.value;
         const hospitalName = form.hospitalName.value;
         const fullAddress = form.fullAddress.value;
+        const donationDate = form.donationDate.value;
+        const donationTime = form.donationTime.value;
 
         const formData = {
             requesterName,
@@ -47,12 +50,23 @@ const CreateRequest = () => {
             recipientUpazila,
             hospitalName,
             fullAddress,
+            donationDate,
+            donationTime,
             donationStatus: 'pending'
         };
 
         axiosSecure.post('/donation-request', formData)
-        .then(()=> {})
-        .catch(()=>{})
+            .then(() => {
+                form.reset();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Request Created!',
+                    text: 'Blood donation request has been created successfully.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            })
+            .catch(() => { })
     }
 
 
@@ -173,7 +187,7 @@ const CreateRequest = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Donation Date</label>
                             <input
                                 type="date"
-
+                                name='donationDate'
                                 required
                                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
                         </div>
@@ -181,6 +195,7 @@ const CreateRequest = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Donation Time</label>
                             <input
                                 type="time"
+                                name='donationTime'
                                 required
                                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
                         </div>

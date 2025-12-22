@@ -50,11 +50,20 @@ const Aside = () => {
 
                     }
                     {
+                        role == 'donor' && <Link
+                            to={' /dashboard/my-donation-requests'}
+                            className='block px-4 py-2 rounded hover:bg-red-800 transition'
+                            onClick={() => setIsOpen(false)}>My Donation Request</Link>
+
+                    }
+                    {
                         role == 'admin' && <Link
                             to={'/dashboard/all-blood-donation-request'}
                             className='block px-4 py-2 rounded hover:bg-red-800 transition'
                             onClick={() => setIsOpen(false)}>All Blood Donation Request</Link>
                     }
+
+                    <Link to={'/'} className='block px-4 py-2 rounded hover:bg-red-800 transition' > Home</Link>
 
                 </nav>
             </div>

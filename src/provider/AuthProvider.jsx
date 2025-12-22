@@ -47,17 +47,14 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (!user) return;
-        axios.get(`http://localhost:3000/users/${user.email}`)
+        axios.get(`https://life-drop-server-nine.vercel.app/users/${user.email}`)
             .then((res) => {
                 setRole(res.data.role);
                 setStatus(res.data.status)
                 setRoleLoading(false)
             })
 
-    }, [user])
-
-    console.log(status);
-    
+    }, [user])    
     
 
     const AuthData = {
