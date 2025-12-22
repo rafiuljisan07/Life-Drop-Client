@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const CreateRequest = () => {
     const { user } = useContext(AuthContext)
@@ -8,6 +9,8 @@ const CreateRequest = () => {
     const [districts, setDistricts] = useState([]);
     const [upazila, setUpazila] = useState('');
     const [district, setDistrict] = useState('');
+
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         axios.get('/upazilas.json')
@@ -47,7 +50,7 @@ const CreateRequest = () => {
             donationStatus: 'pending'
         };
 
-        axios.post('http://localhost:3000/donation-request', formData)
+        axiosSecure.post('/donation-request', formData)
         .then(()=> {})
         .catch(()=>{})
     }

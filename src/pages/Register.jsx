@@ -68,7 +68,6 @@ const Register = () => {
 
         const formData = {
             email,
-            password,
             name,
             photoURL,
             bloodGroup,
