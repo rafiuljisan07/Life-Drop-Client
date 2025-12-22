@@ -39,7 +39,7 @@ const SearchPage = () => {
         //     upazila
         // };
 
-        axios.get(`http://localhost:3000/search-requests?bloodGroup=${bloodGroup}&district=${district}&upazila=${upazila}`)
+        axios.get(`https://life-drop-server-nine.vercel.app/search-requests?bloodGroup=${bloodGroup}&district=${district}&upazila=${upazila}`)
             .then(res => {
                 setSearchResults(res.data);
                 setLoading(false)
