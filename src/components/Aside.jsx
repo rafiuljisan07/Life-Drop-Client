@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
 
 const Aside = () => {
+    const { role } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div>
-
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`md:hidden ${isOpen && 'hidden'} fixed top-2 left-2 z-50 p-2 text-red-900 bg-red-100  text-xl rounded`}
@@ -34,18 +35,26 @@ const Aside = () => {
                         to={'/dashboard'}
                         className='block px-4 py-2 rounded hover:bg-red-800 transition'
                         onClick={() => setIsOpen(false)}>Dashboard Home</Link>
-                    <Link
-                        to={'/dashboard/all-users'}
-                        className='block px-4 py-2 rounded hover:bg-red-800 transition'
-                        onClick={() => setIsOpen(false)}>All Users</Link>
-                    <Link
-                        to={'/dashboard/create-donation-request'}
-                        className='block px-4 py-2 rounded hover:bg-red-800 transition'
-                        onClick={() => setIsOpen(false)}>Create Donation Request</Link>
-                    <Link
-                        to={'/dashboard/all-blood-donation-request'}
-                        className='block px-4 py-2 rounded hover:bg-red-800 transition'
-                        onClick={() => setIsOpen(false)}>All Blood Donation Request</Link>
+                    {
+                        role == 'admin' && <Link
+                            to={'/dashboard/all-users'}
+                            className='block px-4 py-2 rounded hover:bg-red-800 transition'
+                            onClick={() => setIsOpen(false)}>All Users</Link>
+                    }
+
+                    {
+                        role == 'donor' && <Link
+                            to={'/dashboard/create-donation-request'}
+                            className='block px-4 py-2 rounded hover:bg-red-800 transition'
+                            onClick={() => setIsOpen(false)}>Create Donation Request</Link>
+
+                    }
+                    {
+                        role == 'admin' && <Link
+                            to={'/dashboard/all-blood-donation-request'}
+                            className='block px-4 py-2 rounded hover:bg-red-800 transition'
+                            onClick={() => setIsOpen(false)}>All Blood Donation Request</Link>
+                    }
 
                 </nav>
             </div>
