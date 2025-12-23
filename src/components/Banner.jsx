@@ -1,15 +1,15 @@
 import React from 'react';
-import bannerImg from '../assets/banner.png'
+import bannerImg from '../assets/hero.jpg'
 import { Link } from 'react-router';
 
 const Banner = () => {
     return (
         <div>
-            <div className='min-h-120 flex items-center my-10 justify-center px-4 relative overflow-hidden rounded-2xl '>
+            <div className='min-h-screen flex items-center mb-10 justify-center px-4 relative overflow-hidden'>
                 <img src={bannerImg}
                     alt="banner"
                     className='absolute inset-0 h-full w-full object-cover' />
-                <div className="absolute inset-0 bg-linear-to-b from-black/0 to-black/60 "></div>
+                <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/80 "></div>
                 <div className="absolute max-w-2xl w-full text-center">
                     <h1 className="text-4xl lg:text-7xl font-bold text-white mb-4">
                         Save Lives, Share Blood

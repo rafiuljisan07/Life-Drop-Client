@@ -6,7 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const PrivateRoute = ({ children }) => {
     const { user, status, loading, roleLoading } = use(AuthContext);
     if (loading || roleLoading) return <LoadingSpinner />
-    if (user && status == 'active') return children;
+    if (user || status == 'active') return children;
 
     return <Navigate state={location?.pathname} to={'/login'} />;
 };
