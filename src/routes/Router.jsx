@@ -13,6 +13,7 @@ import Search from "../components/Search";
 import CreateRequest from "../dashboard/CreateRequest";
 import MyDonationRequest from "../dashboard/MyDonationRequest";
 import Funding from "../pages/Funding";
+import DonationRequests from "../pages/DonationRequests";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage />
+            },
+            {
+                path:'/donation-requests',
+                element: <DonationRequests />
             },
             {
                 path: '/login',
