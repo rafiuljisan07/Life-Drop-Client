@@ -1,7 +1,8 @@
 import { Menu, X } from 'lucide-react'
 import { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router';
-import logo from '../assets/logo.png'
+import { easeIn, easeOut, motion } from "framer-motion";
+import logo from '../assets/logo.png';
 import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 import { FaSearch } from 'react-icons/fa';
@@ -14,7 +15,7 @@ const Navbar = () => {
     const navLinks = [
         { path: '/', label: 'Home' },
         { path: '/donation-requests', label: 'Donation Requests' },
-        { path: '/funding', label: 'Funding'},
+        { path: '/funding', label: 'Funding' },
         { path: '/search', label: <FaSearch /> },
     ]
 
@@ -42,7 +43,11 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 bg-white shadow-sm">
+        <motion.nav
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: .75 }}
+            className="sticky top-0 z-50 bg-white shadow-sm">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     <Link to="/" className="flex items-center space-x-2">
@@ -51,7 +56,10 @@ const Navbar = () => {
                             Life<span className="text-red-600"> Drop</span>
                         </span>
                     </Link>
-                    <div className="hidden lg:flex items-center space-x-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="hidden lg:flex items-center space-x-8">
                         {navLinks.map((link) => (
                             <NavLink
                                 key={link.path}
@@ -100,7 +108,7 @@ const Navbar = () => {
                                 </Link>
                             </div>
                         )}
-                    </div>
+                    </motion.div>
 
                     {/* Mobile Menu Button */}
                     <div className='lg:hidden flex space-x-2'>
@@ -177,7 +185,7 @@ const Navbar = () => {
                     </div>
                 )}
             </div>
-        </nav>
+        </motion.nav>
     )
 }
 
