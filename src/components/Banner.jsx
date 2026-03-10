@@ -15,21 +15,21 @@ const Banner = () => {
                     <motion.h1
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: .5, ease: 'easeIn', delay: .25 }}
+                        transition={{ duration: .75, ease: 'easeIn', delay: .25 }}
                         className="text-4xl lg:text-7xl font-bold text-white mb-4">
                         Save Lives, Share Blood
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: .5, ease: 'easeIn', delay: .5 }}
+                        transition={{ duration: .75, ease: 'easeIn', delay: .5 }}
                         className="text-lg text-gray-100 mb-8">
                         Be a hero in your community. Donate blood and help those in need.
                     </motion.p>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: .5, ease: 'easeIn', delay: .75 }}
+                        transition={{ duration: .75, ease: 'easeIn', delay: .75 }}
                         className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to={'/register'}
